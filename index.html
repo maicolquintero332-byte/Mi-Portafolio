@@ -1,491 +1,2128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Start your development with JohnDoe landing page.">
-    <meta name="author" content="Devcrud">
-    <title>My page</title>
-    <!-- font icons -->
-    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
-    <!-- Bootstrap + JohnDoe main styles -->
-	<link rel="stylesheet" href="assets/css/johndoe.css">
+  <!-- =============================================
+       META & SEO
+       ============================================= -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portafolio profesional de Maikol Quintero — Desarrollador web, soporte técnico y diseñador. Villavicencio, Colombia.">
+  <meta name="keywords" content="Maikol Quintero, portafolio, desarrollador web, soporte técnico, diseño, HTML, CSS, JavaScript, Python, SQL">
+  <meta name="author" content="Maikol Quintero">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:title"       content="Maikol Quintero | Portafolio">
+  <meta property="og:description" content="Portafolio profesional de Maikol Quintero — Desarrollador web, soporte técnico y diseñador.">
+  <meta property="og:image"       content="assets/imgs/avatar.jpg">
+  <meta property="og:url"         content="https://tu-dominio.com"> <!-- Reemplazar con tu URL -->
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="Maikol Quintero | Portafolio">
+  <meta name="twitter:description" content="Portafolio profesional de Maikol Quintero.">
+  <meta name="twitter:image"       content="assets/imgs/avatar.jpg">
+
+  <!-- Favicon placeholder -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚔️</text></svg>">
+
+  <title>Maikol Quintero | Portafolio Desarrollador</title>
+
+  <!-- =============================================
+       FONTS
+       Google Fonts: Cinzel (display) + Inter (body)
+       ============================================= -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- =============================================
+       STYLES
+       ============================================= -->
+  <style>
+    /* ── DESIGN TOKENS ────────────────────────────
+       Palette:
+         --ink      #05080F  (deep obsidian)
+         --navy     #0A1628  (midnight navy)
+         --steel    #1A2744  (steel blue)
+         --gold     #C89B3C  (runic gold)
+         --gold-lt  #F0D580  (bright gold accent)
+         --silver   #A0AABB  (metallic silver)
+         --fog      #D8DCE8  (light text)
+         --white    #FFFFFF
+
+       Type:
+         Display  — Cinzel (serif, arcane)
+         Body     — Inter (clean, readable)
+    ────────────────────────────────────────────── */
+
+    :root {
+      --ink:      #05080F;
+      --navy:     #0A1628;
+      --steel:    #1A2744;
+      --steel2:   #243557;
+      --gold:     #C89B3C;
+      --gold-lt:  #F0D580;
+      --gold-dk:  #8A6820;
+      --silver:   #A0AABB;
+      --fog:      #D8DCE8;
+      --white:    #FFFFFF;
+
+      --font-display: 'Cinzel', serif;
+      --font-body:    'Inter', sans-serif;
+
+      --radius-sm:  6px;
+      --radius-md:  12px;
+      --radius-lg:  20px;
+
+      --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      --glow-gold:  0 0 18px rgba(200, 155, 60, 0.55);
+      --glow-blue:  0 0 22px rgba(30, 80, 180, 0.45);
+    }
+
+    /* ── RESET & BASE ─────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--ink);
+      color: var(--fog);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ── SCROLL-BAR ──────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--ink); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+    /* ── SELECTION ───────────────────────────── */
+    ::selection { background: var(--gold); color: var(--ink); }
+
+    /* ── UTILITY ─────────────────────────────── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-label {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .section-title span { color: var(--gold); }
+
+    .divider {
+      width: 64px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      margin-bottom: 48px;
+    }
+
+    /* gold gradient text */
+    .text-gold {
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-lt) 60%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* ── REVEAL ANIMATION ────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ── BUTTONS ─────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 32px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.05);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .btn:hover::before { opacity: 1; }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold-dk), var(--gold), var(--gold-lt));
+      color: var(--ink);
+      box-shadow: var(--glow-gold);
+    }
+
+    .btn-gold:hover {
+      box-shadow: 0 0 28px rgba(200, 155, 60, 0.8);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+    }
+
+    .btn-outline:hover {
+      background: rgba(200, 155, 60, 0.1);
+      box-shadow: var(--glow-gold);
+      transform: translateY(-2px);
+    }
+
+    /* ── NAVBAR ──────────────────────────────── */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    #navbar.scrolled {
+      background: rgba(5, 8, 15, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 12px 0;
+      box-shadow: 0 2px 30px rgba(0,0,0,0.5), 0 1px 0 rgba(200,155,60,0.2);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.08em;
+    }
+
+    .nav-logo span { color: var(--white); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .nav-links a {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--silver);
+      transition: color 0.25s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active { color: var(--gold); }
+    .nav-links a:hover::after,
+    .nav-links a.active::after { width: 100%; }
+
+    /* hamburger */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--gold);
+      transition: var(--transition);
+      transform-origin: center;
+    }
+
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile nav */
+    .nav-mobile {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      background: rgba(5, 8, 15, 0.98);
+      border-top: 1px solid rgba(200,155,60,0.2);
+      padding: 16px 24px 24px;
+    }
+
+    .nav-mobile.open { display: flex; }
+
+    .nav-mobile a {
+      font-family: var(--font-display);
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--silver);
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: color 0.25s;
+    }
+
+    .nav-mobile a:hover { color: var(--gold); }
+
+    /* ── HERO ────────────────────────────────── */
+    #inicio {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      /* 
+        IMAGEN PRINCIPAL DEL HERO
+        Reemplazar esta URL por una imagen propia si lo deseas.
+        Fuente: artwork oficial de League of Legends (Riot Games).
+      */
+      background-image:
+        linear-gradient(135deg, rgba(5,8,15,0.92) 0%, rgba(10,22,40,0.75) 50%, rgba(5,8,15,0.90) 100%),
+        url('https://cdn.wallpapersafari.com/54/26/aw9wZR.jpg');
+      background-size: cover;
+      background-position: center top;
+      background-attachment: fixed;
+    }
+
+    /* Subtle animated particle overlay */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 70% 50%, rgba(30, 80, 180, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Rune-circle signature element — the unique mark of this portfolio */
+    .rune-circle {
+      position: absolute;
+      right: 8%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 380px;
+      height: 380px;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
+    .rune-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1px solid var(--gold);
+      animation: runeRotate linear infinite;
+    }
+
+    .rune-ring:nth-child(1) { inset: 0;    animation-duration: 40s; }
+    .rune-ring:nth-child(2) { inset: 24px; animation-duration: 28s; animation-direction: reverse; border-style: dashed; }
+    .rune-ring:nth-child(3) { inset: 52px; animation-duration: 55s; border-color: var(--gold-lt); }
+
+    @keyframes runeRotate {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.3s forwards;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.6rem, 7vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--white);
+      margin-bottom: 12px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.5s forwards;
+    }
+
+    .hero-subtitle {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+      font-weight: 400;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.7s forwards;
+    }
+
+    .hero-description {
+      max-width: 520px;
+      color: var(--silver);
+      font-size: 1rem;
+      line-height: 1.75;
+      margin-bottom: 44px;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.9s forwards;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.8s 1.1s forwards;
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeIn 1s 1.8s forwards;
+      z-index: 1;
+    }
+
+    .scroll-indicator span {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 44px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 1.8s ease infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(1.2); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ── ABOUT ───────────────────────────────── */
+    #sobre-mi {
+      background: linear-gradient(180deg, var(--ink) 0%, var(--navy) 100%);
+      position: relative;
+    }
+
+    #sobre-mi::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .profile-frame {
+      position: relative;
+      width: 260px;
+      flex-shrink: 0;
+    }
+
+    .profile-frame::before {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border: 1px solid var(--gold);
+      border-radius: var(--radius-md);
+      opacity: 0.4;
+    }
+
+    .profile-frame::after {
+      content: '';
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      right: -14px;
+      bottom: -14px;
+      border: 1px solid rgba(200,155,60,0.2);
+      border-radius: var(--radius-md);
+      z-index: -1;
+    }
+
+    .profile-img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      filter: grayscale(20%) contrast(1.05);
+      /* 
+        Reemplazar por tu fotografía de perfil real.
+        Ruta sugerida: assets/imgs/avatar.jpg
+      */
+    }
+
+    .profile-img-placeholder {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, var(--steel) 0%, var(--steel2) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      color: rgba(200,155,60,0.3);
+    }
+
+    .about-body { display: flex; flex-direction: column; gap: 32px; }
+
+    .about-bio {
+      font-size: 1.05rem;
+      color: var(--fog);
+      line-height: 1.85;
+    }
+
+    .info-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+    }
+
+    .info-card {
+      background: rgba(26, 39, 68, 0.5);
+      border: 1px solid rgba(200,155,60,0.15);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .info-card:hover {
+      border-color: rgba(200,155,60,0.5);
+      box-shadow: 0 0 20px rgba(200,155,60,0.1);
+    }
+
+    .info-card .ic-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 6px;
+      font-family: var(--font-display);
+    }
+
+    .info-card .ic-value {
+      font-size: 0.95rem;
+      color: var(--fog);
+      font-weight: 500;
+    }
+
+    /* stats */
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(200,155,60,0.12);
+      border: 1px solid rgba(200,155,60,0.12);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-top: 16px;
+    }
+
+    .stat-item {
+      background: var(--navy);
+      padding: 24px 16px;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .stat-item:hover { background: var(--steel); }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--gold);
+      display: block;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-desc {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--silver);
+    }
+
+    /* ── SKILLS ──────────────────────────────── */
+    #habilidades {
+      background: var(--ink);
+      position: relative;
+    }
+
+    #habilidades::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-card {
+      background: linear-gradient(135deg, rgba(26,39,68,0.6), rgba(10,22,40,0.6));
+      border: 1px solid rgba(200,155,60,0.12);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .skill-card:hover::before { transform: scaleX(1); }
+
+    .skill-card:hover {
+      border-color: rgba(200,155,60,0.4);
+      box-shadow: var(--glow-gold);
+      transform: translateY(-4px);
+    }
+
+    .skill-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .skill-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-sm);
+      background: rgba(200,155,60,0.1);
+      border: 1px solid rgba(200,155,60,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+
+    .skill-name {
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.05em;
+    }
+
+    .skill-level-label {
+      margin-left: auto;
+      font-size: 0.75rem;
+      color: var(--gold);
+      font-family: var(--font-display);
+    }
+
+    .skill-bar-bg {
+      height: 4px;
+      background: rgba(255,255,255,0.07);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .skill-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold-dk), var(--gold), var(--gold-lt));
+      border-radius: 2px;
+      width: 0%;
+      transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 8px var(--gold);
+    }
+
+    /* ── PROJECTS ────────────────────────────── */
+    #proyectos {
+      background: linear-gradient(180deg, var(--ink) 0%, var(--navy) 100%);
+      position: relative;
+    }
+
+    #proyectos::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      background: var(--steel);
+      border: 1px solid rgba(200,155,60,0.12);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-card:hover {
+      border-color: rgba(200,155,60,0.45);
+      box-shadow: var(--glow-gold);
+      transform: translateY(-6px);
+    }
+
+    .project-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      /* 
+        Reemplazar las URLs de imágenes de proyecto con las tuyas.
+      */
+    }
+
+    .project-img-placeholder {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--steel2) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: rgba(200,155,60,0.2);
+    }
+
+    .project-body {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .project-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .project-desc {
+      font-size: 0.9rem;
+      color: var(--silver);
+      line-height: 1.65;
+      flex: 1;
+      margin-bottom: 16px;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .project-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: rgba(200,155,60,0.1);
+      border: 1px solid rgba(200,155,60,0.25);
+      color: var(--gold);
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-family: var(--font-display);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 12px;
+    }
+
+    .project-links .btn {
+      flex: 1;
+      justify-content: center;
+      font-size: 0.72rem;
+      padding: 10px 16px;
+    }
+
+    /* ── SOCIAL ──────────────────────────────── */
+    #redes {
+      background: var(--ink);
+      position: relative;
+    }
+
+    #redes::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 20px;
+      margin-top: 16px;
+    }
+
+    .social-card {
+      background: rgba(26,39,68,0.5);
+      border: 1px solid rgba(200,155,60,0.12);
+      border-radius: var(--radius-md);
+      padding: 32px 16px 24px;
+      text-align: center;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .social-card:hover {
+      border-color: rgba(200,155,60,0.5);
+      box-shadow: var(--glow-gold);
+      transform: translateY(-5px);
+    }
+
+    .social-card .s-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(200,155,60,0.1);
+      border: 1px solid rgba(200,155,60,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      color: var(--gold);
+      transition: background 0.3s, box-shadow 0.3s;
+    }
+
+    .social-card:hover .s-icon {
+      background: rgba(200,155,60,0.2);
+      box-shadow: var(--glow-gold);
+    }
+
+    .social-card .s-name {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--silver);
+    }
+
+    /* ── CONTACT ─────────────────────────────── */
+    #contacto {
+      background: linear-gradient(180deg, var(--ink) 0%, var(--navy) 100%);
+      position: relative;
+    }
+
+    #contacto::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 56px;
+    }
+
+    /* form */
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group label {
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: rgba(26,39,68,0.6);
+      border: 1px solid rgba(200,155,60,0.2);
+      border-radius: var(--radius-sm);
+      padding: 13px 16px;
+      color: var(--fog);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(200,155,60,0.1);
+    }
+
+    .form-group textarea { resize: vertical; min-height: 140px; }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(160,170,187,0.4); }
+
+    .contact-submit { align-self: flex-start; }
+
+    /* contact info */
+    .contact-info { display: flex; flex-direction: column; gap: 24px; }
+
+    .contact-info-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--white);
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .ci-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      background: rgba(200,155,60,0.1);
+      border: 1px solid rgba(200,155,60,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      color: var(--gold);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .ci-body .ci-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-family: var(--font-display);
+      margin-bottom: 2px;
+    }
+
+    .ci-body .ci-value {
+      font-size: 0.9rem;
+      color: var(--fog);
+    }
+
+    /* ── SERVICES ────────────────────────────── */
+    #servicios {
+      background: var(--navy);
+      position: relative;
+    }
+
+    #servicios::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      background: rgba(26,39,68,0.5);
+      border: 1px solid rgba(200,155,60,0.12);
+      border-radius: var(--radius-md);
+      padding: 36px 28px;
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      transform: scaleX(0);
+      transition: transform 0.4s;
+    }
+
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-card:hover {
+      border-color: rgba(200,155,60,0.4);
+      box-shadow: var(--glow-gold);
+      transform: translateY(-5px);
+    }
+
+    .service-icon {
+      font-size: 2rem;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .service-title {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 12px;
+      letter-spacing: 0.05em;
+    }
+
+    .service-desc {
+      font-size: 0.9rem;
+      color: var(--silver);
+      line-height: 1.7;
+    }
+
+    /* ── FOOTER ──────────────────────────────── */
+    footer {
+      background: var(--ink);
+      border-top: 1px solid rgba(200,155,60,0.15);
+      padding: 40px 0 32px;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    .footer-logo span { color: var(--silver); }
+
+    .footer-copy {
+      font-size: 0.82rem;
+      color: var(--silver);
+      text-align: center;
+    }
+
+    .footer-copy a { color: var(--gold); }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 1rem;
+      color: var(--silver);
+      transition: color 0.25s, transform 0.25s;
+    }
+
+    .footer-links a:hover { color: var(--gold); transform: translateY(-2px); }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      box-shadow: var(--glow-gold);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s, transform 0.3s;
+      z-index: 900;
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .back-to-top:hover { transform: translateY(-3px); }
+
+    /* ── EXPERIENCE SECTION ──────────────────── */
+    #resumen {
+      background: var(--ink);
+      position: relative;
+    }
+
+    #resumen::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .resume-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+
+    .resume-col-title {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+
+    .resume-col-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(200,155,60,0.2);
+    }
+
+    .resume-item {
+      border-left: 2px solid rgba(200,155,60,0.2);
+      padding-left: 20px;
+      margin-bottom: 28px;
+      position: relative;
+      transition: border-color 0.3s;
+    }
+
+    .resume-item::before {
+      content: '';
+      position: absolute;
+      top: 6px;
+      left: -5px;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 8px var(--gold);
+    }
+
+    .resume-item:hover { border-color: var(--gold); }
+
+    .resume-date {
+      font-family: var(--font-display);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .resume-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .resume-place {
+      font-size: 0.82rem;
+      color: var(--gold);
+      margin-bottom: 8px;
+      font-style: italic;
+    }
+
+    .resume-desc {
+      font-size: 0.88rem;
+      color: var(--silver);
+      line-height: 1.65;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────── */
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .profile-frame { width: 200px; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .resume-grid { grid-template-columns: 1fr; }
+      .stat-strip { grid-template-columns: repeat(2, 1fr); }
+      .rune-circle { display: none; }
+    }
+
+    @media (max-width: 768px) {
+      .section { padding: 72px 0; }
+      .nav-links { display: none; }
+      .nav-toggle { display: flex; }
+      .form-row { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; align-items: center; text-align: center; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-cta { flex-direction: column; }
+      .hero-cta .btn { justify-content: center; }
+      .stat-strip { grid-template-columns: repeat(2, 1fr); }
+      .social-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ── REDUCED MOTION ──────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
 </head>
-<body data-spy="scroll" data-target=".navbar" data-offset="40" id="Inicio">
-    <a href="components.html" class="btn btn-primary btn-component" data-spy="affix" data-offset-top="600"><i class="ti-shift-left-alt"></i> Components</a>
-    <header class="header">
-        <div class="container">
-            <ul class="social-icons pt-3">
-                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-facebook" aria-hidden="true"></i></a></li>
-                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-twitter" aria-hidden="true"></i></a></li>
-                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-google" aria-hidden="true"></i></a></li>
-                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-instagram" aria-hidden="true"></i></a></li>
-                <li class="social-item"><a class="social-link text-light" href="#"><i class="ti-github" aria-hidden="true"></i></a></li>
-            </ul>  
-            <div class="header-content">
-                <h4 class="header-subtitle" >¿Como estan?, Mi nombre es</h4>
-                <h1 class="header-title">Maikol Quintero</h1>
-                <h6 class="header-mono" >Bienvenidos a mi página </h6>
-            </div>
-        </div>
-    </header>
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white" data-spy="affix" data-offset-top="510">
-        <div class="container">
-            <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse mt-sm-20 navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a href="#Inicio" class="nav-link">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#about" class="nav-link">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#Resumen" class="nav-link">Resumen</a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav brand">
-                    <img src="assets/imgs/avatar.jpg" alt="" class="brand-img">
-                    <li class="brand-txt">
-                        <h5 class="brand-title">Hola</h5>
-                        <div class="brand-subtitle">Esta es mi página web</div>
-                    </li>
-                </ul>
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a href="#nada" class="nav-link">Nada</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#tampoco nada" class="nav-link">Tampoco nada</a>
-                    </li>
-                    <li class="nav-item last-item">
-                        <a href="#contacto" class="nav-link">Contacto</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="container-fluid">
-        <div id="about" class="row about-section">
-            <div class="col-lg-4 about-card">
-                <h3 class="font-weight-light">¿Quien soy?</h3>
-                <span class="line mb-5"></span>
-                <h5 class="mb-3">Soy un estudiante del colegio "ITEY"</h5>
-                <p class="mt-20">de la clase de informatica 11G, soy soporte técnico junto a mis compañeros de la empresa JIMPP</p>
-                <button class="btn btn-outline-danger"><i class="icon-down-circled2 "></i></button>
-            </div>
-            <div class="col-lg-4 about-card">
-                <h3 class="font-weight-light">Info. Personal</h3>
-                <span class="line mb-5"></span>
-                <ul class="mt40 info list-unstyled">
-                    <li><span>Birthdate</span> : 08/25/2007</li>
-                    <li><span>Email</span> : maicolquintero332@gmail.com</li>
-                    <li><span>Telefono</span> : 3138640848</li>
-                    <li><span>Address</span> :  Por ahi</li>
-                </ul>
-                <ul class="social-icons pt-3">
-                    <li class="social-item"><a class="social-link" href="#"><i class="ti-facebook" aria-hidden="true"></i></a></li>
-                    <li class="social-item"><a class="social-link" href="#"><i class="ti-twitter" aria-hidden="true"></i></a></li>
-                    <li class="social-item"><a class="social-link" href="#"><i class="ti-google" aria-hidden="true"></i></a></li>
-                    <li class="social-item"><a class="social-link" href="#"><i class="ti-instagram" aria-hidden="true"></i></a></li>
-                    <li class="social-item"><a class="social-link" href="#"><i class="ti-github" aria-hidden="true"></i></a></li>
-                </ul>  
-            </div>
-            <div class="col-lg-4 about-card">
-                <h3 class="font-weight-light">Mi experiencia</h3>
-                <span class="line mb-5"></span>
-                <div class="row">
-                    <div class="col-1 text-danger pt-1"><i class="ti-widget icon-lg"></i></div>
-                    <div class="col-10 ml-auto mr-3">
-                        <h6>Soporte Técnico</h6>
-                        <p class="subtitle"> Mantenimiento de equipos.</p>
-                        <hr>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-1 text-danger pt-1"><i class="ti-paint-bucket icon-lg"></i></div>
-                    <div class="col-10 ml-auto mr-3">
-                        <h6>Diseños</h6>
-                        <p class="subtitle">.</p>
-                        <hr>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-1 text-danger pt-1"><i class="ti-stats-up icon-lg"></i></div>
-                    <div class="col-10 ml-auto mr-3">
-                        <h6>Marketing Digital</h6>
-                        <p class="subtitle">Creación de paginas.</p>
-                        <hr>
-                    </div>
-                </div>
-            </div>
-        </div>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <nav id="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="container">
+      <div class="nav-inner">
+
+        <!-- Logo -->
+        <a href="#inicio" class="nav-logo" aria-label="Inicio">
+          MQ<span> // Portfolio</span>
+        </a>
+
+        <!-- Desktop links -->
+        <ul class="nav-links" role="list">
+          <li><a href="#inicio"    class="active">Inicio</a></li>
+          <li><a href="#sobre-mi">Sobre mí</a></li>
+          <li><a href="#proyectos">Proyectos</a></li>
+          <li><a href="#habilidades">Habilidades</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+
+        <!-- Mobile toggle -->
+        <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false" id="navToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div class="nav-mobile" id="navMobile" aria-hidden="true">
+        <a href="#inicio">Inicio</a>
+        <a href="#sobre-mi">Sobre mí</a>
+        <a href="#proyectos">Proyectos</a>
+        <a href="#habilidades">Habilidades</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section id="inicio" aria-label="Presentación principal">
+
+    <!-- Background -->
+    <div class="hero-bg" aria-hidden="true"></div>
+
+    <!-- Rune circle — signature element -->
+    <div class="rune-circle" aria-hidden="true">
+      <div class="rune-ring"></div>
+      <div class="rune-ring"></div>
+      <div class="rune-ring"></div>
     </div>
 
-    <!--Resumen Section-->
-    <section class="section" id="Resumen">
-        <div class="container">
-            <h2 class="mb-5"><span class="text-danger">Mi</span> Resumen</h2>
-            <div class="row">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card">
-                       <div class="card-header">
-                            <div class="mt-2">
-                                <h4>Expertise</h4>
-                                <span class="line"></span>  
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h6 class="title text-danger">2026 - Present</h6>
-                            <P>Tecnologo Sistemas</P>
-                            <P class="subtitle">Corrijo errores de software, hago mantenimiento de equipos, creo paginas, etc.</P>
-                            <hr>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card">
-                       <div class="card-header">
-                            <div class="mt-2">
-                                <h4>Educación</h4>
-                                <span class="line"></span>  
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h6 class="title text-danger">2026 - Present</h6>
-                            <P>Itey</P>
-                            <P class="subtitle">Termine bachiller en el año 2026 siendo del grado 11G, con la especialidad de sistemas.</P>
+    <!-- Content -->
+    <div class="container">
+      <div class="hero-content">
+        <p class="hero-eyebrow">⚔ Portafolio Profesional</p>
+
+        <h1 class="hero-title text-gold">
+          Maikol<br>Quintero
+        </h1>
+
+        <p class="hero-subtitle">
+          Desarrollador Web &amp; Soporte Técnico
+        </p>
+
+        <p class="hero-description">
+          Estudiante graduado del ITEY, especialidad Sistemas · 11G.<br>
+          Creo experiencias digitales funcionales, elegantes y pensadas para el usuario.
+        </p>
+
+        <div class="hero-cta">
+          <a href="#sobre-mi" class="btn btn-gold" aria-label="Ver portafolio">
+            <i class="fas fa-user-shield" aria-hidden="true"></i>
+            Ver Portafolio
+          </a>
+          <a href="#proyectos" class="btn btn-outline" aria-label="Ver mis proyectos">
+            <i class="fas fa-code" aria-hidden="true"></i>
+            Mis Proyectos
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+
+  </section>
+
+  <!-- ============================================================
+       SOBRE MÍ
+  ============================================================ -->
+  <section id="sobre-mi" class="section" aria-label="Sobre mí">
+    <div class="container">
+      <p class="section-label reveal">// Sobre mí</p>
+      <h2 class="section-title reveal">Conoce al <span>Desarrollador</span></h2>
+      <div class="divider reveal"></div>
+
+      <div class="about-grid">
+
+        <!-- Foto de perfil -->
+        <div class="profile-frame reveal">
+          <!-- 
+            FOTO DE PERFIL:
+            Reemplaza la etiqueta de abajo por una imagen real:
+            <img src="assets/imgs/avatar.jpg" alt="Fotografía de Maikol Quintero" class="profile-img">
             
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card">
-                       <div class="card-header">
-                            <div class="pull-left">
-                                <h4 class="mt-2">Habilidades</h4>
-                                <span class="line"></span>  
-                            </div>
-                        </div>
-                        <div class="card-body pb-2">
-                           <h6>hTL5 &amp; CSS3</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 97%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>JavaScript</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 85%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Python</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 80%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>SQL</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 90%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Laborum</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 90%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Tempora</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 90%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                       <div class="card-header">
-                            <div class="pull-left">
-                                <h4 class="mt-2">Idiomas</h4>
-                                <span class="line"></span>  
-                            </div>
-                        </div>
-                        <div class="card-body pb-2">
-                           <h6>English</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 72%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Español</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                            <h6>Seriedad</h6>
-                            <div class="progress mb-3">
-                                <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            Por ahora se muestra un placeholder visual.
+          -->
+          <div class="profile-img-placeholder" aria-label="Foto de perfil de Maikol Quintero">
+            <i class="fas fa-user-astronaut" aria-hidden="true"></i>
+          </div>
+        </div>
+
+        <!-- Texto y datos -->
+        <div class="about-body">
+          <p class="about-bio reveal reveal-delay-1">
+            Soy <strong style="color:var(--gold)">Maikol Quintero</strong>, egresado del colegio ITEY con especialidad en Sistemas (grado 11G, 2026).
+            Me apasiona el desarrollo web, el diseño digital y el soporte técnico. Formo parte de la empresa
+            <strong style="color:var(--fog)">JIMPP</strong>, donde trabajo como soporte técnico junto a mis compañeros.
+            Construyo páginas modernas, mantengo equipos y aprendo algo nuevo cada día.
+          </p>
+
+          <!-- Tarjetas de información -->
+          <div class="info-cards">
+            <div class="info-card reveal reveal-delay-1">
+              <div class="ic-label">Fecha de nacimiento</div>
+              <div class="ic-value">25 de agosto, 2007</div>
             </div>
-        </div>
-    </section>
-
-    <section class="section bg-dark text-center">
-        <div class="container">
-            <div class="row text-center">
-                <div class="col-md-6 col-lg-3">
-                    <div class="row ">
-                        <div class="col-5 text-right text-light border-right py-3">
-                            <div class="m-auto"><i class="ti-alarm-clock icon-xl"></i></div>
-                        </div>
-                        <div class="col-7 text-left py-3">
-                            <h1 class="text-danger font-weight-bold font40">200</h1>
-                            <p class="text-light mb-1">Horas trabajadas</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="row">
-                        <div class="col-5 text-right text-light border-right py-3">
-                            <div class="m-auto"><i class="ti-layers-alt icon-xl"></i></div>
-                        </div>
-                        <div class="col-7 text-left py-3">
-                            <h1 class="text-danger font-weight-bold font40">50K</h1>
-                            <p class="text-light mb-1">Project Finished</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="row">
-                        <div class="col-5 text-right text-light border-right py-3">
-                            <div class="m-auto"><i class="ti-face-smile icon-xl"></i></div>
-                        </div>
-                        <div class="col-7 text-left py-3">
-                            <h1 class="text-danger font-weight-bold font40">10 :D</h1>
-                            <p class="text-light mb-1">Clientes satisfechos</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="row">
-                        <div class="col-5 text-right text-light border-right py-3">
-                            <div class="m-auto"><i class="ti-heart-broken icon-xl"></i></div>
-                        </div>
-                        <div class="col-7 text-left py-3">
-                            <h1 class="text-danger font-weight-bold font40">2k</h1>
-                            <p class="text-light mb-1">Coffee Drinked</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="info-card reveal reveal-delay-2">
+              <div class="ic-label">Correo</div>
+              <div class="ic-value">maicolquintero332@gmail.com</div>
             </div>
-        </div>
-    </section>
-
-    <section class="section" id="service">
-        <div class="container">
-            <h2 class="mb-5 pb-4"><span class="text-danger">Mis</span> Servicios</h2>
-            <div class="row">
-                <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                       <div class="card-header has-icon">
-                            <i class="ti-vector text-danger" aria-hidden="true"></i>
-                        </div>
-                        <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">Diseños</h5>
-                            <P class="subtitle">Creo diseños al gusto del cliente, creados en Adobe Illustrator.</P>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                       <div class="card-header has-icon">
-                            <i class="ti-write text-danger" aria-hidden="true"></i>
-                        </div>
-                        <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">Servicio Tecnico</h5>
-                            <P class="subtitle">Hago mantenimiento a los equipos.</P>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="card mb-5">
-                       <div class="card-header has-icon">
-                            <i class="ti-package text-danger" aria-hidden="true"></i>
-                        </div>
-                        
-                
-                        <div class="card-body px-4 py-3">
-                            <h5 class="mb-3 card-title text-dark">Creación de páginas web</h5>
-                            <P class="subtitle">Hago páginas web para cualquier caso.</P>
-                        </div>
-                    </div>
-                </div>
-                
-    </section>
-
-    <section class="section bg-custom-gray" id="price">
-        <div class="container">
-            <h1 class="mb-5"><span class="text-danger">Precio</span> Paquetes</h1>
-            <div class="row align-items-center">
-                <div class="col-md-6 col-lg-3">
-                    <div class="price-card text-center mb-4">
-                        <h3 class="price-card-title">Gratis</h3>
-                        <div class="price-card-cost">
-                            <sup class="ti-money"></sup>
-                            <span class="num">0</span>
-                            <span class="date">MO</span>
-                        </div>
-                        <ul class="list">
-                            <li class="list-item">5 <span class="text-muted">Proyectos</span></li>
-                            <li class="list-item">1GB <span class="text-muted">Storage</span></li>
-                            <li class="list-item"><span class="text-muted">No Domain</span></li>
-                            <li class="list-item">1 <span class="text-muted">Usuario</span></li>
-                        </ul>
-                        <button class="btn btn-primary btn-rounded w-lg">Subscribe</button>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="price-card text-center mb-4">
-                        <h3 class="price-card-title">Basico</h3>
-                        <div class="price-card-cost">
-                            <sup class="ti-money"></sup>
-                            <span class="num">10</span>
-                            <span class="date">MO</span>
-                        </div>
-                        <ul class="list">
-                            <li class="list-item">50 <span class="text-muted">Proyectos</span></li>
-                            <li class="list-item">10GB <span class="text-muted">Storage</span></li>
-                            <li class="list-item">1<span class="text-muted">Domain</span></li>
-                            <li class="list-item">5 <span class="text-muted">User</span></li>
-                        </ul>
-                        <button class="btn btn-primary btn-rounded w-lg">Subscribe</button>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="price-card text-center price-card-requried mb-4">
-                        <h3 class="price-card-title">Exclusivo</h3>
-                        <div class="price-card-cost">
-                            <sup class="ti-money"></sup>
-                            <span class="num">25</span>
-                            <span class="date">MO</span>
-                        </div>
-                        <ul class="list">
-                            <li class="list-item">150 <span class="text-muted">Proyecto</span></li>
-                            <li class="list-item">15GB <span class="text-muted">Storage</span></li>
-                            <li class="list-item">5<span class="text-muted"> Domain</span></li>
-                            <li class="list-item">15<span class="text-muted">User</span></li>
-                        </ul>
-                        <button class="btn btn-primary btn-rounded w-lg">Subscribe</button>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-3">
-                    <div class="price-card text-center mb-4">
-                        <h3 class="price-card-title">Pro</h3>
-                        <div class="price-card-cost">
-                            <sup class="ti-money"></sup>
-                            <span class="num">99</span>
-                            <span class="date">MO</span>
-                        </div>
-                        <ul class="list">
-                            <li class="list-item">500 <span class="text-muted">Proyecto</span></li>
-                            <li class="list-item">1000GB <span class="text-muted">Storage</span></li>
-                            <li class="list-item">10<span class="text-muted"> Domain</span></li>
-                            <li class="list-item">Unlimite<span class="text-muted">User</span></li>
-                        </ul>
-                        <button class="btn btn-primary btn-rounded w-lg">Subscribe</button>
-                    </div>
-                </div>
+            <div class="info-card reveal reveal-delay-3">
+              <div class="ic-label">Teléfono</div>
+              <div class="ic-value">+57 313 864 0848</div>
             </div>
-        </div>
-    </section>
-    <section class="section bg-dark py-5">
-        <div class="container text-center">
-            <h2 class="text-light mb-5 font-weight-normal">Aqui no hay nada</h2>
-            <button class="btn bg-primary w-lg" >Presiona :D</button>
-        </div>
-    </section>
-
-    <div class="section contacto" id="contacto">
-        <div id="map" class="map"></div>
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-8">
-                    <div class="contact-form-card">
-                        <h4 class="contact-title">Envia un mensaje</h4>
-                        <form action="">
-                            <div class="form-group">
-                                <input  class="form-control" type="text" placeholder="Nombre *" required>
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" type="email" placeholder="Email *" required>
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control" id=" placeholder="Message *" rows="7" required></textarea>
-                            </div>
-                            <div class="form-group ">
-                                <button type="submit" class="form-control btn btn-primary" >Send Message</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="contact-info-card">
-                        <h4 class="contact-title">Get in touch</h4>
-                        <div class="row mb-2">
-                            <div class="col-1 pt-1 mr-1">
-                                <i class="ti-mobile icon-md"></i>
-                            </div>
-                            <div class="col-10 ">
-                                <h6 class="d-inline">Télefono : <br> <span class="text-muted">+47 (313)864 0848 </span></h6>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-1 pt-1 mr-1">
-                                <i class="ti-map-alt icon-md"></i>
-                            </div>
-                            <div class="col-10">
-                                <h6 class="d-inline">Dirección:<br> <span class="text-muted">Calle 37 trv 7b #28.</span></h6>
-                            </div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-1 pt-1 mr-1">
-                                <i class="ti-envelope icon-md"></i>
-                            </div>
-                            <div class="col-10">
-                                <h6 class="d-inline">Email :<br> <span class="text-muted">maicolquintero332@gmail.com</span></h6>
-                            </div>
-                        </div>
-                        <ul class="social-icons pt-4">
-                            <li class="social-item"><a class="social-link text-dark" href="#"><i class="ti-facebook" aria-hidden="true"></i></a></li>
-                            <li class="social-item"><a class="social-link text-dark" href="#"><i class="ti-twitter" aria-hidden="true"></i></a></li>
-                            <li class="social-item"><a class="social-link text-dark" href="#"><i class="ti-google" aria-hidden="true"></i></a></li>
-                            <li class="social-item"><a class="social-link text-dark" href="#"><i class="ti-instagram" aria-hidden="true"></i></a></li>
-                            <li class="social-item"><a class="social-link text-dark" href="#"><i class="ti-github" aria-hidden="true"></i></a></li>
-                        </ul> 
-                    </div>
-                </div>
+            <div class="info-card reveal reveal-delay-4">
+              <div class="ic-label">Ubicación</div>
+              <div class="ic-value">Colombia</div>
             </div>
+          </div>
 
+          <!-- Estadísticas -->
+          <div class="stat-strip reveal">
+            <div class="stat-item">
+              <span class="stat-num">200+</span>
+              <span class="stat-desc">Horas trabajadas</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">10+</span>
+              <span class="stat-desc">Clientes satisfechos</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">5+</span>
+              <span class="stat-desc">Proyectos</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-num">2026</span>
+              <span class="stat-desc">Graduación</span>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-    <footer class="footer py-3">
-        <div class="container">
-            <p class="small mb-0 text-light">
-                &copy; <script>document.write(new Date().getFullYear())</script> Created With <i class="ti-heart text-danger"></i> By <a href="http://devcrud.com" target="_blank"><span class="text-danger" title="Bootstrap 4 Themes and Dashboards">DevCRUD</span></a> 
+  </section>
+
+  <!-- ============================================================
+       RESUMEN / EXPERIENCIA
+  ============================================================ -->
+  <section id="resumen" class="section" aria-label="Resumen">
+    <div class="container">
+      <p class="section-label reveal">// Trayectoria</p>
+      <h2 class="section-title reveal">Mi <span>Resumen</span></h2>
+      <div class="divider reveal"></div>
+
+      <div class="resume-grid">
+
+        <!-- Educación -->
+        <div>
+          <div class="resume-col-title reveal">
+            <i class="fas fa-graduation-cap" aria-hidden="true"></i>
+            Educación
+          </div>
+          <div class="resume-item reveal reveal-delay-1">
+            <div class="resume-date">2012 — 2026</div>
+            <div class="resume-title">Técnico en Sistemas</div>
+            <div class="resume-place">ITEY · Grado 11G</div>
+            <p class="resume-desc">
+              Bachiller con especialidad en sistemas. Adquirí conocimientos en redes, mantenimiento de equipos,
+              programación web y diseño digital.
             </p>
+          </div>
+          <!-- Agrega más ítems de educación aquí -->
         </div>
-    </footer>
 
-	<!-- core  -->
-    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
-    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+        <!-- Experiencia -->
+        <div>
+          <div class="resume-col-title reveal">
+            <i class="fas fa-briefcase" aria-hidden="true"></i>
+            Experiencia
+          </div>
+          <div class="resume-item reveal reveal-delay-1">
+            <div class="resume-date">2026 — Presente</div>
+            <div class="resume-title">Soporte Técnico</div>
+            <div class="resume-place">Empresa JIMPP</div>
+            <p class="resume-desc">
+              Mantenimiento preventivo y correctivo de equipos, instalación de software, resolución de
+              problemas de hardware y soporte a usuarios.
+            </p>
+          </div>
+          <div class="resume-item reveal reveal-delay-2">
+            <div class="resume-date">2025 — 2026</div>
+            <div class="resume-title">Desarrollo Web</div>
+            <div class="resume-place">Proyectos escolares & personales</div>
+            <p class="resume-desc">
+              Creación de sitios web con HTML, CSS y JavaScript. Diseño de interfaces en Adobe Illustrator.
+              Marketing digital y posicionamiento web básico.
+            </p>
+          </div>
+        </div>
 
-    <!-- bootstrap 3 affix -->
-    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+      </div>
+    </div>
+  </section>
 
-    <!-- Isotope  -->
-    <script src="assets/vendors/isotope/isotope.pkgd.js"></script>
-    
-    <!-- Google mpas -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtme10pzgKSPeJVJrG1O3tjR6lk98o4w8&callback=initMap"></script>
+  <!-- ============================================================
+       HABILIDADES
+  ============================================================ -->
+  <section id="habilidades" class="section" aria-label="Habilidades">
+    <div class="container">
+      <p class="section-label reveal">// Tecnologías</p>
+      <h2 class="section-title reveal">Mis <span>Habilidades</span></h2>
+      <div class="divider reveal"></div>
 
-    <!-- JohnDoe js -->
-    <script src="assets/js/johndoe.js"></script>
+      <div class="skills-grid">
+
+        <!-- Skill: HTML & CSS -->
+        <div class="skill-card reveal reveal-delay-1" role="article">
+          <div class="skill-top">
+            <div class="skill-icon" aria-hidden="true"><i class="fab fa-html5"></i></div>
+            <span class="skill-name">HTML5 &amp; CSS3</span>
+            <span class="skill-level-label">97%</span>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" data-width="97" aria-label="Nivel HTML5 y CSS3: 97%"></div>
+          </div>
+        </div>
+
+        <!-- Skill: JavaScript -->
+        <div class="skill-card reveal reveal-delay-2" role="article">
+          <div class="skill-top">
+            <div class="skill-icon" aria-hidden="true"><i class="fab fa-js-square"></i></div>
+            <span class="skill-name">JavaScript</span>
+            <span class="skill-level-label">85%</span>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" data-width="85" aria-label="Nivel JavaScript: 85%"></div>
+          </div>
+        </div>
+
+        <!-- Skill: Python -->
+        <div class="skill-card reveal reveal-delay-3" role="article">
+          <div class="skill-top">
+            <div class="skill-icon" aria-hidden="true"><i class="fab fa-python"></i></div>
+            <span class="skill-name">Python</span>
+            <span class="skill-level-label">80%</span>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" data-width="80" aria-label="Nivel Python: 80%"></div>
+          </div>
+        </div>
+
+        <!-- Skill: SQL -->
+        <div class="skill-card reveal reveal-delay-1" role="article">
+          <div class="skill-top">
+            <div class="skill-icon" aria-hidden="true"><i class="fas fa-database"></i></div>
+            <span class="skill-name">SQL</span>
+            <span class="skill-level-label">90%</span>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" data-width="90" aria-label="Nivel SQL: 90%"></div>
+          </div>
+        </div>
+
+        <!-- Skill: Adobe Illustrator -->
+        <div class="skill-card reveal reveal-delay-2" role="article">
+          <div class="skill-top">
+            <div class="skill-icon" aria-hidden="true"><i class="fas fa-pen-nib"></i></div>
+            <span class="skill-name">Adobe Illustrator</span>
+            <span class="skill-level-label">75%</span>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" data-width="75" aria-label="Nivel Adobe Illustrator: 75%"></div>
+          </div>
+        </div>
+
+        <!-- Skill: Soporte Técnico -->
+        <div class="skill-card reveal reveal-delay-3" role="article">
+          <div class="skill-top">
+            <div class="skill-icon" aria-hidden="true"><i class="fas fa-tools"></i></div>
+            <span class="skill-name">Soporte Técnico</span>
+            <span class="skill-level-label">95%</span>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" data-width="95" aria-label="Nivel Soporte Técnico: 95%"></div>
+          </div>
+        </div>
+
+        <!-- Idioma: Español -->
+        <div class="skill-card reveal reveal-delay-1" role="article">
+          <div class="skill-top">
+            <div class="skill-icon" aria-hidden="true"><i class="fas fa-language"></i></div>
+            <span class="skill-name">Español</span>
+            <span class="skill-level-label">100%</span>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" data-width="100" aria-label="Nivel Español: nativo"></div>
+          </div>
+        </div>
+
+        <!-- Idioma: Inglés -->
+        <div class="skill-card reveal reveal-delay-2" role="article">
+          <div class="skill-top">
+            <div class="skill-icon" aria-hidden="true"><i class="fas fa-globe-americas"></i></div>
+            <span class="skill-name">English</span>
+            <span class="skill-level-label">72%</span>
+          </div>
+          <div class="skill-bar-bg">
+            <div class="skill-bar-fill" data-width="72" aria-label="Nivel Inglés: 72%"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       PROYECTOS
+  ============================================================ -->
+  <section id="proyectos" class="section" aria-label="Proyectos">
+    <div class="container">
+      <p class="section-label reveal">// Portafolio</p>
+      <h2 class="section-title reveal">Mis <span>Proyectos</span></h2>
+      <div class="divider reveal"></div>
+
+      <div class="projects-grid">
+
+        <!-- Proyecto 1 -->
+        <article class="project-card reveal reveal-delay-1">
+          <!--
+            IMAGEN DEL PROYECTO 1
+            Reemplaza el placeholder por:
+            <img src="ruta/a/screenshot.jpg" alt="Descripción del Proyecto 1" class="project-img">
+          -->
+          <div class="project-img-placeholder" aria-label="Vista previa proyecto 1">
+            <i class="fas fa-code" aria-hidden="true"></i>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Proyecto 1 — Título</h3>
+            <p class="project-desc">
+              Descripción breve del proyecto. ¿Qué problema resuelve? ¿Qué tecnologías lo hacen especial?
+              Reemplaza este texto con la información real de tu proyecto.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">HTML</span>
+              <span class="project-tag">CSS</span>
+              <span class="project-tag">JavaScript</span>
+            </div>
+            <div class="project-links">
+              <!-- Reemplazar "#" por el enlace real a GitHub del proyecto 1 -->
+              <a href="#" id="project1-github" class="btn btn-outline" aria-label="Ver código en GitHub">
+                <i class="fab fa-github" aria-hidden="true"></i> GitHub
+              </a>
+              <!-- Reemplazar "#" por el enlace real al demo del proyecto 1 -->
+              <a href="#" id="project1-demo" class="btn btn-gold" aria-label="Ver demo en vivo">
+                <i class="fas fa-external-link-alt" aria-hidden="true"></i> Demo
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Proyecto 2 -->
+        <article class="project-card reveal reveal-delay-2">
+          <div class="project-img-placeholder" aria-label="Vista previa proyecto 2">
+            <i class="fas fa-laptop-code" aria-hidden="true"></i>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Proyecto 2 — Título</h3>
+            <p class="project-desc">
+              Descripción breve del segundo proyecto. Menciona el objetivo principal y el stack utilizado.
+              Reemplaza con tus datos reales.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Python</span>
+              <span class="project-tag">SQL</span>
+            </div>
+            <div class="project-links">
+              <!-- Reemplazar "#" por el enlace real a GitHub del proyecto 2 -->
+              <a href="#" id="project2-github" class="btn btn-outline" aria-label="Ver código en GitHub">
+                <i class="fab fa-github" aria-hidden="true"></i> GitHub
+              </a>
+              <!-- Reemplazar "#" por el enlace real al demo del proyecto 2 -->
+              <a href="#" id="project2-demo" class="btn btn-gold" aria-label="Ver demo en vivo">
+                <i class="fas fa-external-link-alt" aria-hidden="true"></i> Demo
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Proyecto 3 -->
+        <article class="project-card reveal reveal-delay-3">
+          <div class="project-img-placeholder" aria-label="Vista previa proyecto 3">
+            <i class="fas fa-paint-brush" aria-hidden="true"></i>
+          </div>
+          <div class="project-body">
+            <h3 class="project-title">Proyecto 3 — Diseño</h3>
+            <p class="project-desc">
+              Descripción del tercer proyecto. Puede ser un diseño en Illustrator, un sitio web para cliente,
+              o cualquier otro trabajo. Reemplaza este texto.
+            </p>
+            <div class="project-tags">
+              <span class="project-tag">Illustrator</span>
+              <span class="project-tag">Diseño</span>
+            </div>
+            <div class="project-links">
+              <!-- Reemplazar "#" por el enlace real a GitHub del proyecto 3 -->
+              <a href="#" id="project3-github" class="btn btn-outline" aria-label="Ver código en GitHub">
+                <i class="fab fa-github" aria-hidden="true"></i> GitHub
+              </a>
+              <!-- Reemplazar "#" por el enlace real al demo del proyecto 3 -->
+              <a href="#" id="project3-demo" class="btn btn-gold" aria-label="Ver demo en vivo">
+                <i class="fas fa-external-link-alt" aria-hidden="true"></i> Demo
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICIOS
+  ============================================================ -->
+  <section id="servicios" class="section" aria-label="Servicios">
+    <div class="container">
+      <p class="section-label reveal">// Ofrezco</p>
+      <h2 class="section-title reveal">Mis <span>Servicios</span></h2>
+      <div class="divider reveal"></div>
+
+      <div class="services-grid">
+
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon"><i class="fas fa-code" aria-hidden="true"></i></div>
+          <h3 class="service-title">Desarrollo Web</h3>
+          <p class="service-desc">
+            Creo páginas web modernas y responsivas adaptadas a las necesidades del cliente,
+            usando HTML, CSS y JavaScript.
+          </p>
+        </div>
+
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon"><i class="fas fa-tools" aria-hidden="true"></i></div>
+          <h3 class="service-title">Soporte Técnico</h3>
+          <p class="service-desc">
+            Mantenimiento preventivo y correctivo de equipos de cómputo, instalación de software
+            y diagnóstico de fallas.
+          </p>
+        </div>
+
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-icon"><i class="fas fa-paint-brush" aria-hidden="true"></i></div>
+          <h3 class="service-title">Diseño Gráfico</h3>
+          <p class="service-desc">
+            Diseños personalizados al gusto del cliente, creados con Adobe Illustrator.
+            Logos, banners y material digital.
+          </p>
+        </div>
+
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div>
+          <h3 class="service-title">Marketing Digital</h3>
+          <p class="service-desc">
+            Creación de páginas y estrategias básicas de posicionamiento web para mejorar
+            la presencia digital de tu negocio.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       REDES SOCIALES
+  ============================================================ -->
+  <section id="redes" class="section" aria-label="Redes sociales">
+    <div class="container">
+      <p class="section-label reveal">// Conéctate</p>
+      <h2 class="section-title reveal">Redes <span>Sociales</span></h2>
+      <div class="divider reveal"></div>
+      <p class="reveal" style="color:var(--silver); margin-bottom: 40px; max-width:520px;">
+        ¿Quieres hablar? Encuéntrame en mis redes. Los enlaces estarán disponibles pronto.
+      </p>
+
+      <div class="social-grid">
+
+        <!-- Facebook -->
+        <!-- Reemplazar "#" por el enlace de Facebook -->
+        <a href="#" id="facebook-link" class="social-card reveal reveal-delay-1" aria-label="Facebook de Maikol Quintero">
+          <div class="s-icon"><i class="fab fa-facebook-f" aria-hidden="true"></i></div>
+          <span class="s-name">Facebook</span>
+        </a>
+
+        <!-- Instagram -->
+        <!-- Reemplazar "#" por el enlace de Instagram -->
+        <a href="#" id="instagram-link" class="social-card reveal reveal-delay-2" aria-label="Instagram de Maikol Quintero">
+          <div class="s-icon"><i class="fab fa-instagram" aria-hidden="true"></i></div>
+          <span class="s-name">Instagram</span>
+        </a>
+
+        <!-- TikTok -->
+        <!-- Reemplazar "#" por el enlace de TikTok -->
+        <a href="#" id="tiktok-link" class="social-card reveal reveal-delay-3" aria-label="TikTok de Maikol Quintero">
+          <div class="s-icon"><i class="fab fa-tiktok" aria-hidden="true"></i></div>
+          <span class="s-name">TikTok</span>
+        </a>
+
+        <!-- GitHub -->
+        <!-- Reemplazar "#" por el enlace de GitHub -->
+        <a href="#" id="github-link" class="social-card reveal reveal-delay-1" aria-label="GitHub de Maikol Quintero">
+          <div class="s-icon"><i class="fab fa-github" aria-hidden="true"></i></div>
+          <span class="s-name">GitHub</span>
+        </a>
+
+        <!-- LinkedIn -->
+        <!-- Reemplazar "#" por el enlace de LinkedIn -->
+        <a href="#" id="linkedin-link" class="social-card reveal reveal-delay-2" aria-label="LinkedIn de Maikol Quintero">
+          <div class="s-icon"><i class="fab fa-linkedin-in" aria-hidden="true"></i></div>
+          <span class="s-name">LinkedIn</span>
+        </a>
+
+        <!-- Discord -->
+        <!-- Reemplazar "#" por el enlace/usuario de Discord -->
+        <a href="#" id="discord-link" class="social-card reveal reveal-delay-3" aria-label="Discord de Maikol Quintero">
+          <div class="s-icon"><i class="fab fa-discord" aria-hidden="true"></i></div>
+          <span class="s-name">Discord</span>
+        </a>
+
+        <!-- Email -->
+        <!-- Reemplazar "#" por mailto:tu@email.com -->
+        <a href="#" id="email-link" class="social-card reveal reveal-delay-1" aria-label="Correo de Maikol Quintero">
+          <div class="s-icon"><i class="fas fa-envelope" aria-hidden="true"></i></div>
+          <span class="s-name">Email</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CONTACTO
+  ============================================================ -->
+  <section id="contacto" class="section" aria-label="Formulario de contacto">
+    <div class="container">
+      <p class="section-label reveal">// Escríbeme</p>
+      <h2 class="section-title reveal">Envíame un <span>Mensaje</span></h2>
+      <div class="divider reveal"></div>
+
+      <div class="contact-grid">
+
+        <!-- Formulario (solo visual — sin backend) -->
+        <div class="reveal">
+          <form class="contact-form" aria-label="Formulario de contacto" onsubmit="handleFormSubmit(event)" novalidate>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contact-name">Nombre</label>
+                <input type="text" id="contact-name" name="nombre" placeholder="Tu nombre completo" required aria-required="true">
+              </div>
+              <div class="form-group">
+                <label for="contact-email">Correo</label>
+                <input type="email" id="contact-email" name="correo" placeholder="tu@correo.com" required aria-required="true">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="contact-subject">Asunto</label>
+              <input type="text" id="contact-subject" name="asunto" placeholder="¿De qué trata tu mensaje?">
+            </div>
+
+            <div class="form-group">
+              <label for="contact-message">Mensaje</label>
+              <textarea id="contact-message" name="mensaje" placeholder="Escribe tu mensaje aquí..." required aria-required="true"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-gold contact-submit" aria-label="Enviar mensaje">
+              <i class="fas fa-paper-plane" aria-hidden="true"></i>
+              Enviar Mensaje
+            </button>
+
+            <!-- Mensaje de confirmación (oculto por defecto) -->
+            <div id="form-success" style="display:none; color:var(--gold); font-family:var(--font-display); font-size:0.85rem; letter-spacing:0.1em; margin-top:12px;" role="alert" aria-live="polite">
+              ✦ Mensaje listo para enviar. Integra un servicio como Formspree o EmailJS para activarlo.
+            </div>
+          </form>
+        </div>
+
+        <!-- Información de contacto -->
+        <div class="contact-info reveal reveal-delay-2">
+          <h3 class="contact-info-title">Información de <span style="color:var(--gold)">Contacto</span></h3>
+
+          <div class="contact-info-item">
+            <div class="ci-icon"><i class="fas fa-phone" aria-hidden="true"></i></div>
+            <div class="ci-body">
+              <div class="ci-label">Teléfono</div>
+              <div class="ci-value">+57 313 864 0848</div>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="ci-icon"><i class="fas fa-envelope" aria-hidden="true"></i></div>
+            <div class="ci-body">
+              <div class="ci-label">Correo electrónico</div>
+              <div class="ci-value">maicolquintero332@gmail.com</div>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="ci-icon"><i class="fas fa-map-marker-alt" aria-hidden="true"></i></div>
+            <div class="ci-body">
+              <div class="ci-label">Dirección</div>
+              <div class="ci-value">Calle 37 Trv 7b #28, Colombia</div>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="ci-icon"><i class="fas fa-clock" aria-hidden="true"></i></div>
+            <div class="ci-body">
+              <div class="ci-label">Disponibilidad</div>
+              <div class="ci-value">Lunes – Viernes, 8 am – 6 pm</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+
+        <span class="footer-logo">
+          MQ<span> // Portfolio</span>
+        </span>
+
+        <p class="footer-copy">
+          &copy; <span id="year"></span> Maikol Quintero · Todos los derechos reservados ·
+          Hecho con <span style="color:var(--gold)">⚔</span> y código.
+        </p>
+
+        <!-- Redes en footer -->
+        <div class="footer-links">
+          <!-- Reemplazar "#" por tus enlaces reales -->
+          <a href="#" id="footer-github"   aria-label="GitHub"><i class="fab fa-github"     aria-hidden="true"></i></a>
+          <a href="#" id="footer-linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+          <a href="#" id="footer-instagram" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+          <a href="#" id="footer-email"    aria-label="Email"><i class="fas fa-envelope"    aria-hidden="true"></i></a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top button -->
+  <a href="#inicio" class="back-to-top" id="backToTop" aria-label="Volver al inicio">
+    <i class="fas fa-chevron-up" aria-hidden="true"></i>
+  </a>
+
+  <!-- ============================================================
+       SCRIPTS
+  ============================================================ -->
+  <script>
+    /* ─────────────────────────────────────────────
+       1. Año dinámico en footer
+    ───────────────────────────────────────────── */
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    /* ─────────────────────────────────────────────
+       2. Navbar: scroll behavior + active link
+    ───────────────────────────────────────────── */
+    const navbar    = document.getElementById('navbar');
+    const navLinks  = document.querySelectorAll('.nav-links a');
+    const sections  = document.querySelectorAll('section[id]');
+
+    function onScroll() {
+      // Sticky style
+      if (window.scrollY > 60) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+
+      // Back to top button
+      const btt = document.getElementById('backToTop');
+      if (window.scrollY > 400) {
+        btt.classList.add('visible');
+      } else {
+        btt.classList.remove('visible');
+      }
+
+      // Active nav link
+      let current = '';
+      sections.forEach(sec => {
+        if (window.scrollY >= sec.offsetTop - 120) {
+          current = sec.getAttribute('id');
+        }
+      });
+      navLinks.forEach(a => {
+        a.classList.remove('active');
+        if (a.getAttribute('href') === '#' + current) {
+          a.classList.add('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    /* ─────────────────────────────────────────────
+       3. Mobile menu toggle
+    ───────────────────────────────────────────── */
+    const navToggle = document.getElementById('navToggle');
+    const navMobile = document.getElementById('navMobile');
+
+    navToggle.addEventListener('click', () => {
+      const isOpen = navToggle.classList.toggle('open');
+      navMobile.classList.toggle('open', isOpen);
+      navToggle.setAttribute('aria-expanded', isOpen);
+      navMobile.setAttribute('aria-hidden', !isOpen);
+    });
+
+    // Close on link click
+    navMobile.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navToggle.classList.remove('open');
+        navMobile.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+        navMobile.setAttribute('aria-hidden', 'true');
+      });
+    });
+
+    /* ─────────────────────────────────────────────
+       4. Scroll reveal
+    ───────────────────────────────────────────── */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    /* ─────────────────────────────────────────────
+       5. Skill bar animation (triggered on reveal)
+    ───────────────────────────────────────────── */
+    const skillObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const bar = entry.target.querySelector('.skill-bar-fill');
+          if (bar) {
+            const w = bar.getAttribute('data-width');
+            // Small delay for visual drama
+            setTimeout(() => { bar.style.width = w + '%'; }, 200);
+          }
+          skillObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('.skill-card').forEach(card => skillObserver.observe(card));
+
+    /* ─────────────────────────────────────────────
+       6. Smooth scroll for all anchor links
+    ───────────────────────────────────────────── */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        const target = document.querySelector(anchor.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    /* ─────────────────────────────────────────────
+       7. Form submit handler (visual only)
+    ───────────────────────────────────────────── */
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      document.getElementById('form-success').style.display = 'block';
+      // Para activar el envío real, integra Formspree:
+      // 1. Crea una cuenta en formspree.io
+      // 2. Cambia el atributo action del form por tu endpoint
+      // 3. Elimina el e.preventDefault()
+    }
+  </script>
 
 </body>
 </html>
